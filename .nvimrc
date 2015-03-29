@@ -2,6 +2,7 @@ set nocompatible
 filetype off
 " Vundle stuff ---------------------------------------------------------------
 set rtp+=~/.nvim/bundle/Vundle.vim
+call vundle#rc("~/.nvim/bundle/")
 call vundle#begin()
 Plugin 'klen/python-mode'
 Plugin 'terryma/vim-multiple-cursors'
