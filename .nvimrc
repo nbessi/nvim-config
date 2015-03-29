@@ -72,3 +72,11 @@ colorscheme solarized
 " Custom key bindings ---------------------------------------------------------
 noremap <Leader>e :FufFile <CR>
 nnoremap <Leader>s :FufBuffer <CR>
+" Clean trailing white lines --------------------------------------------------
+function TrimEndLines()
+    let save_cursor = getpos(".")
+    :silent! %s#\($\n\s*\)\+\%$##
+    call setpos('.', save_cursor)
+endfunction
+
+au BufWritePre * call TrimEndLines()
