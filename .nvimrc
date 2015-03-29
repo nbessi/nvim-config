@@ -59,6 +59,7 @@ set backspace=2 " backspace yay
 autocmd BufWritePre * :%s/\s\+$//e " Remove trailing white spaces
 set hidden " Allows to switch buffer with changes
 set smartcase " Activate subsitute smart case
+set number " line number mode
 " Color Sheme -----------------------------------------------------------------
 set t_Co=256
 set background=dark
