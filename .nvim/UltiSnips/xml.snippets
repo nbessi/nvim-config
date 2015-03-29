@@ -1,0 +1,93 @@
+snippet odoo_action_menu
+
+<record model="ir.actions.act_window" id="${1:xml_id}">
+   <field name="name">${2:name}</field>
+   <field name="type">ir.actions.act_window</field>
+   <field name="res_model">${3:model}</field>
+   <field name="domain"></field>
+   <field name="view_type">${4:form}</field>
+   <field name="view_mode">tree,form</field>
+   <field name="view_id" ref="${5:view_id}"/>
+ </record>
+
+
+<menuitem
+     name="$2"
+     parent="${6:parent_menu}"
+     action="$1"
+     id="$1_menu"/># name: openerp_data
+endsnippet
+
+snippet odoo_data
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    $0
+  </data>
+</openerp>
+endsnippet
+
+snippet odoo_field
+
+<field name="${1:name}"
+     attrs="${2:attrs}"
+     readonly="${3:False}"
+     required="${4:False}"/>
+endsnippet
+
+snippet odoo_menuitem
+
+<menuitem
+     name="${1:name}"
+     parent="${2:parent_menu}"
+     action="${3:action_id}"
+     id="${4:mxl_id}"/>
+endsnippet
+
+snippet odoo_view
+<record id="${1:xml_id}" model="ir.ui.view">
+  <field name="name">${1/_/ /g}</field>
+  <field name="model">${3:model}</field>
+  <field name="arch" type="xml">
+    <${5:form} version="${6:version}" string="${7:Name}"> <!-- editable="bottom" -->
+    $0
+    </$5>
+  </field>
+</record>
+endsnippet
+snippet  odoo_view_inherit
+<record id="${1:xml_id}" model="ir.ui.view">
+  <field name="name">${1/_/ /g}</field>
+  <field name="model">${3:model}</field>
+  <field name="inherit_id" ref="${4:parent_view}" />
+  <field name="arch" type="xml">
+  <${5:field} name="${6:name}" position="${7:position}">
+    $0
+  </$5>
+  </field>
+</record>
+endsnippet
+
+snippet  odoo_wizard_action
+<!-- for button -->
+<record id="${1:xml_id}" model="ir.actions.act_window">
+  <field name="name">${2:name}</field>
+  <field name="res_model">${3:model}</field>
+  <field name="src_model">${4:src_model}</field>
+  <field name="view_type">${5:form}</field>
+  <field name="view_mode">${6:form}</field>
+  <field name="view_id" ref="${7:view_id}"/>
+  <field name="target">new</field>
+  <field name="help">${8:help}</field>
+</record>
+
+<!-- for menu -->
+<act_window name="$2"
+  res_model="$3"
+  src_model="${9:name}"
+  view_mode="form"
+  target="new"
+  key2="client_action_multi"
+  id="$1_menu_action"/>
+$0
+endsnippet
