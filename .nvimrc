@@ -18,6 +18,7 @@ Plugin 'tomtom/tcomment_vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
+Plugin 'henrik/vim-qargs'
 call vundle#end()
 filetype plugin indent on
 filetype plugin on
@@ -43,11 +44,12 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 " General behavior -----------------------------------------------------------
-"set hlsearch
+set hlsearch
 set incsearch " highlight search dynamicly
 " ensure start behavior does not jump to next match
 nnoremap * *``
-" set omnifunc=syntaxcomplete#Complete " enable auto completion popup
+set omnifunc=syntaxcomplete#Complete " enable auto completion popup
+set complete=.,w,b,t  
 syntax on " activate syntax highlight
 set autochdir " change current dir on file open
 let g:airline_powerline_fonts=1 "powerline special char required patched font
@@ -57,10 +59,12 @@ set tags=./tags; " tag file lookup
 let mapleader="," " custom leader mapping
 let &makeprg = 'upsearch_makefile && make' " lookup parent hierachy for a make file
 set backspace=2 " backspace yay
-autocmd BufWritePre * :%s/\s\+$//e " Remove trailing white spaces
 set hidden " Allows to switch buffer with changes
 set smartcase " Activate subsitute smart case
 set number " line number mode
+set backupdir=./.backup,.,/tmp
+set directory=.,./.backup,/tmp
+let g:multi_cursor_exit_from_insert_mode = 0
 " Color Sheme -----------------------------------------------------------------
 set t_Co=256
 set background=dark
@@ -72,7 +76,11 @@ colorscheme solarized
 :set guioptions-=L  "remove left-hand scroll bar
 " Custom key bindings ---------------------------------------------------------
 noremap <Leader>e :FufFile <CR>
-nnoremap <Leader>s :FufBuffer <CR>
+nnoremap <Leader>b :FufBuffer <CR>
+inoremap <§> <C-X><C-O>
+" Python mode setting ---------------------------------------------------------
+let g:pymode_virtualenv = 1
+let g:pymode_breakpoint_bind = '<Leader>s'
 " Clean trailing white lines --------------------------------------------------
 function TrimEndLines()
     let save_cursor = getpos(".")
@@ -81,3 +89,17 @@ function TrimEndLines()
 endfunction
 
 au BufWritePre * call TrimEndLines()
+" Clean trailing white space --------------------------------------------------
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd FileType markdown,yml,c,java,javascript,xml,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" Use arrow to switch slip ---------------------------------------------------
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
