@@ -57,7 +57,7 @@ set laststatus=2 " Activate status line even if one buffer
 set foldlevel=99 " Unfold by default
 set tags=./tags; " tag file lookup
 let mapleader="," " custom leader mapping
-let &makeprg = 'upsearch_makefile && make' " lookup parent hierachy for a make file
+let &makeprg = 'upsearch_odoo_makefile && make -f Odoo_makefile' " lookup parent hierachy for a make file
 set backspace=2 " backspace yay
 set hidden " Allows to switch buffer with changes
 set smartcase " Activate subsitute smart case
