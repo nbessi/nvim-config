@@ -77,7 +77,10 @@ colorscheme solarized
 " Custom key bindings ---------------------------------------------------------
 noremap <Leader>e :FufFile <CR>
 nnoremap <Leader>b :FufBuffer <CR>
-inoremap <§> <C-X><C-O>
+inoremap <expr> § "<C-n>"
+inoremap jk <ESC>
+map <F9> :make
+map! <F9> :make
 " Python mode setting ---------------------------------------------------------
 let g:pymode_virtualenv = 1
 let g:pymode_breakpoint_bind = '<Leader>s'
