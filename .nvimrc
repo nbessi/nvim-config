@@ -62,8 +62,8 @@ set backspace=2 " backspace yay
 set hidden " Allows to switch buffer with changes
 set smartcase " Activate subsitute smart case
 set number " line number mode
-set backupdir=./.backup,.,/tmp
-set directory=.,./.backup,/tmp
+set backupdir=./.backup,/tmp
+set directory=./.backup,/tmp
 let g:multi_cursor_exit_from_insert_mode = 0
 " Color Sheme -----------------------------------------------------------------
 set t_Co=256
@@ -79,8 +79,8 @@ noremap <Leader>e :FufFile <CR>
 nnoremap <Leader>b :FufBuffer <CR>
 inoremap <expr> § "<C-n>"
 inoremap jk <ESC>
-map <F9> :make
-map! <F9> :make
+map <F9> :make <cr><cr>
+map! <F9> :make <cr><cr>
 " Python mode setting ---------------------------------------------------------
 let g:pymode_virtualenv = 1
 let g:pymode_breakpoint_bind = '<Leader>s'
