@@ -4,6 +4,7 @@ filetype off
 set rtp+=~/.nvim/bundle/Vundle.vim
 call vundle#rc("~/.nvim/bundle/")
 call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
 Plugin 'klen/python-mode'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'bling/vim-airline'
@@ -19,6 +20,8 @@ Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
 Plugin 'henrik/vim-qargs'
+Plugin 'majutsushi/tagbar'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 filetype plugin on
@@ -38,14 +41,13 @@ let g:pymode_lint = 0 " Disable Python mode check
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 " General behavior -----------------------------------------------------------
 set hlsearch
-set incsearch " highlight search dynamicly
+set incsearch " highlight search dynamicaly
 " ensure start behavior does not jump to next match
 nnoremap * *``
 set omnifunc=syntaxcomplete#Complete " enable auto completion popup
@@ -78,7 +80,10 @@ colorscheme solarized
 noremap <Leader>e :FufFile <CR>
 nnoremap <Leader>b :FufBuffer <CR>
 inoremap <expr> § "<C-n>"
-inoremap jk <ESC>
+nnoremap <expr> § ":"
+inoremap jj <ESC>
+noremap qw :w
+noremap wq :w
 map <F9> :make <cr><cr>
 map! <F9> :make <cr><cr>
 " Python mode setting ---------------------------------------------------------
@@ -101,6 +106,10 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 autocmd FileType markdown,yml,c,java,javascript,xml,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" Python mode setup -----------------------------------------------------------
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope = 0
+" let g:loaded_youcompleteme = 1
 " Use arrow to switch slip ---------------------------------------------------
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
