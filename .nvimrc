@@ -26,7 +26,7 @@ call vundle#end()
 filetype plugin indent on
 filetype plugin on
 " Snippets -------------------------------------------------------------------
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-q>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Tab beavhiour --------------------------------------------------------------
