@@ -83,8 +83,8 @@ nnoremap <Leader>b :FufBuffer <CR>
 inoremap <expr> § "<C-n>"
 nnoremap <expr> § ":"
 inoremap jj <ESC>
-noremap qw :w
-noremap wq :w
+noremap qw :w <return>
+noremap wq :w <return>
 map <F9> :make <cr><cr>
 map! <F9> :make <cr><cr>
 " Python mode setting ---------------------------------------------------------
