@@ -22,6 +22,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'henrik/vim-qargs'
 Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'xuhdev/vim-latex-live-preview'
 call vundle#end()
 filetype plugin indent on
 filetype plugin on
